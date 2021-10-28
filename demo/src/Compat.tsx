@@ -1,8 +1,12 @@
 // @ts-ignore
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 export function ReactComponent() {
 	const [v, set] = useState(0);
+
+	// NOTE: Test that babel-plugin-transform-hook-names can process this as well.
+	const _unusedState = useState(0 as any);
+	const _unusedMemo = useMemo<number>(() => _unusedState[0], [_unusedState[0]]);
 
 	return (
 		<div>
